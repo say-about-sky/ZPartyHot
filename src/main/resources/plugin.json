@@ -1,0 +1,8 @@
+{
+  "id": "com.saysky.zparty",
+  "name": "ZParty",
+  "version": "1.0.0",
+  "description": "Lightweight parties: a party is a government (Governments.json). Ruling party == civ ideology, no religion/culture changes.",
+  "trusted": true,
+  "mainClass": "com.saysky.zparty.hot.ZPartyPlugin"
+}

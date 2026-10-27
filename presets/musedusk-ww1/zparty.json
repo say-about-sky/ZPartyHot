@@ -1,0 +1,181 @@
+{
+  "Enabled": true,
+  "ShowInGovernmentPage": true,
+  "UiPages": ["government"],
+  "MaxRows": 10,
+
+  "MirrorCivs": [],
+  "SupportThresholds": [0.25, 0.5, 0.75],
+
+  "CostStat": "diplomacy",
+  "CostAmount": 40,
+  "SupportPerDay": 0.02,
+  "CampaignDays": 10,
+  "CooldownDays": 60,
+
+  "ActionSuccessChance": 0.75,
+  "ActionFailRefund": 0.5,
+  "ActionFailPenalty": 0.01,
+  "ActionFailCooldownDays": 20,
+
+  "ElectionsEnabled": true,
+  "ElectionIntervalDays": 1460,
+  "ElectionCostStat": "diplomacy",
+  "ElectionCostAmount": 60,
+  "ElectionCooldownDays": 365,
+  "ElectionMaxAdvanceDays": 120,
+  "ElectionWeightExponent": 1.0,
+  "ElectionIncumbentBonus": 1.2,
+  "ElectionNoise": 0.35,
+  "ElectionChangeRuling": true,
+  "ElectionAllCivs": false,
+
+  "PollFrames": 8,
+  "MirrorFrames": 16,
+  "UiCheckFrames": 8,
+
+  "Parties": [
+    {
+      "Tag": "royal",
+      "Name": "保皇党",
+      "ExtraTag": "m",
+      "Desc": "绝对君主制：君权神授，朕即国家。",
+      "Color": [214, 160, 52]
+    },
+    {
+      "Tag": "const",
+      "Name": "立宪党",
+      "ExtraTag": "n",
+      "Desc": "君主立宪主义：国王统而不治，议会主政。",
+      "Color": [46, 96, 150]
+    },
+    {
+      "Tag": "dual",
+      "Name": "钦定党",
+      "ExtraTag": "准",
+      "Desc": "二元立宪主义：宪法钦定，君主与议会共治。",
+      "Color": [70, 150, 150]
+    },
+    {
+      "Tag": "colonial",
+      "Name": "殖民党",
+      "ExtraTag": "x",
+      "Desc": "殖民主义：以母国利益统辖海外领地。不作为默认政党使用",
+      "Color": [190, 190, 190]
+    },
+    {
+      "Tag": "liberal",
+      "Name": "自由党",
+      "ExtraTag": "r",
+      "Desc": "古典自由主义：自由贸易、有限政府。",
+      "Color": [40, 120, 200]
+    },
+    {
+      "Tag": "conservative",
+      "Name": "保守党",
+      "ExtraTag": "1",
+      "Desc": "保守主义：维护传统秩序与既有特权。",
+      "Color": [96, 64, 160]
+    },
+    {
+      "Tag": "radical",
+      "Name": "激进党",
+      "ExtraTag": "j",
+      "Desc": "激进共和主义：彻底共和，主权在民。",
+      "Color": [176, 148, 84]
+    },
+    {
+      "Tag": "germilitarist",
+      "Name": "普鲁士军国党",
+      "ExtraTag": "普",
+      "Desc": "普鲁士军国主义：军队不是国家的一部分，国家是军队的一部分。",
+      "Color": [110, 110, 120]
+    },
+    {
+      "Tag": "militarist",
+      "Name": "军国党",
+      "ExtraTag": "军",
+      "Desc": "军国主义：国家是军队的一部分。",
+      "Color": [110, 110, 120]
+    }
+
+  ],
+
+  "DefaultCountry": {
+    "Support": [
+      { "Tag": "dual", "Share": "0.10~0.14" },
+      { "Tag": "const", "Share": "0.04~0.12" },
+      { "Tag": "radical", "Share": 0.08 },
+      { "Tag": "royal", "Share": "0.16~0.24" }
+    ]
+  },
+
+  "Countries": [
+    {
+      "Civ": "ger",
+      "Ruling": "germilitarist",
+      "Support": [
+        { "Tag": "conservative", "Share": 0.14 },
+        { "Tag": "radical", "Share": 0.12 },
+        { "Tag": "liberal", "Share": 0.10 }
+      ]
+    },
+    {
+      "Civ": "rus",
+      "Ruling": "dual",
+      "Support": [
+        { "Tag": "royal", "Share": 0.12 },
+        { "Tag": "conservative", "Share": 0.10 },
+        { "Tag": "radical", "Share": 0.08 },
+        { "Tag": "liberal", "Share": 0.06 }
+      ]
+    },
+    {
+      "Civ": "uni",
+      "Ruling": "const",
+      "Support": [
+        { "Tag": "conservative", "Share": 0.16 },
+        { "Tag": "liberal", "Share": 0.12 },
+        { "Tag": "radical", "Share": 0.06 }
+      ]
+    },
+    {
+      "Civ": "fra",
+      "Ruling": "radical",
+      "Support": [
+        { "Tag": "conservative", "Share": 0.12 },
+        { "Tag": "liberal", "Share": 0.12 },
+        { "Tag": "const", "Share": 0.08 }
+      ]
+    },
+    {
+      "Civ": "usa",
+      "Ruling": "liberal",
+      "Support": [
+        { "Tag": "conservative", "Share": 0.14 },
+        { "Tag": "radical", "Share": 0.10 },
+        { "Tag": "const", "Share": 0.08 }
+      ]
+    },
+    { "Civ": "qin", "Ruling": "royal", "Support": [] },
+    { "Civ": "jap", "Ruling": "dual", "Support": [] },
+    { "Civ": "tur", "Ruling": "dual", "Support": [] },
+    { "Civ": "ita", "Ruling": "const", "Support": [] },
+    { "Civ": "spa", "Ruling": "dual", "Support": [] },
+    { "Civ": "por", "Ruling": "dual", "Support": [] },
+    { "Civ": "ira", "Ruling": "dual", "Support": [] },
+    { "Civ": "atr", "Ruling": "dual", "Support": [] },
+    { "Civ": "hun", "Ruling": "dual", "Support": [] },
+    { "Civ": "swe", "Ruling": "const", "Support": [] },
+    { "Civ": "bra", "Ruling": "conservative", "Support": [] },
+    { "Civ": "arg", "Ruling": "conservative", "Support": [] },
+    { "Civ": "col", "Ruling": "conservative", "Support": [] },
+    { "Civ": "chl", "Ruling": "conservative", "Support": [] },
+    { "Civ": "ind", "Ruling": "colonial", "Support": [] },
+    { "Civ": "dox", "Ruling": "colonial", "Support": [] },
+    { "Civ": "aus", "Ruling": "colonial", "Support": [] },
+    { "Civ": "ins", "Ruling": "colonial", "Support": [] },
+    { "Civ": "soa", "Ruling": "colonial", "Support": [] },
+    { "Civ": "egyo", "Ruling": "royal", "Support": [] }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "Enabled": true,
+  "Elections": false,
+  "Persist": false,
+
+  "Jitter": 40,
+  "MinShare": 0.01,
+
+  "DriftDays": 60,
+  "DriftAmount": 0.02,
+  "DriftCivs": 12,
+  "DriftBias": 0.6,
+  "FixMax": 4,
+
+  "ElectionIntervalDays": 0,
+  "ElectionDelayDays": 240,
+
+  "FixStrayGovernments": true,
+  "PollFrames": 0
+}

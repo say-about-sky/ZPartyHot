@@ -1,0 +1,89 @@
+{
+  "Enabled": true,
+  "ShowInGovernmentPage": true,
+  "UiPages": ["government"],
+  "MaxRows": 6,
+
+  "MirrorCivs": [],
+  "SupportThresholds": [0.25, 0.5, 0.75],
+
+  "CostStat": "legacy",
+  "CostAmount": 100,
+  "SupportPerDay": 0.02,
+  "CampaignDays": 10,
+  "CooldownDays": 30,
+
+  "ActionSuccessChance": 0.75,
+  "ActionFailRefund": 0.5,
+  "ActionFailPenalty": 0.01,
+  "ActionFailCooldownDays": 15,
+
+  "ElectionsEnabled": true,
+  "ElectionIntervalDays": 365,
+  "ElectionCostStat": "diplomacy",
+  "ElectionCostAmount": 50,
+  "ElectionCooldownDays": 90,
+  "ElectionMaxAdvanceDays": 60,
+  "ElectionWeightExponent": 1.0,
+  "ElectionIncumbentBonus": 1.0,
+  "ElectionNoise": 0.35,
+  "ElectionChangeRuling": true,
+  "ElectionAllCivs": false,
+
+  "PollFrames": 8,
+  "MirrorFrames": 16,
+  "UiCheckFrames": 8,
+
+  "Parties": [
+    {
+      "Tag": "mon",
+      "Name": "保皇党",
+      "ExtraTag": "m",
+      "Desc": "绝对君主制",
+      "Color": [200, 60, 60]
+    },
+    {
+      "Tag": "lib",
+      "Name": "立宪党",
+      "ExtraTag": "n",
+      "Desc": "君主立宪主义",
+      "Color": [60, 120, 200]
+    },
+    {
+      "Tag": "soc",
+      "Name": "社会党",
+      "ExtraTag": "c",
+      "Desc": "社会主义",
+      "Color": [200, 130, 60]
+    },
+    {
+      "Tag": "com",
+      "Name": "先锋队",
+      "ExtraTag": "苏",
+      "Desc": "布尔什维主义",
+      "Color": [180, 30, 40]
+    }
+  ],
+
+  "DefaultCountry": {
+    "Support": [
+      { "Tag": "mon", "Share": 0.18 },
+      { "Tag": "lib", "Share": 0.18 },
+      { "Tag": "soc", "Share": 0.14 },
+      { "Tag": "com", "Share": 0.08 }
+    ]
+  },
+
+  "Countries": [
+    {
+      "Civ": "afg",
+      "Ruling": "lib",
+      "Support": [
+        { "Tag": "mon", "Share": 0.35 },
+        { "Tag": "lib", "Share": 0.45 },
+        { "Tag": "soc", "Share": 0.15 },
+        { "Tag": "com", "Share": 0.05 }
+      ]
+    }
+  ]
+}

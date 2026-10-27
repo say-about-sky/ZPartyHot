@@ -1,0 +1,12 @@
+# build outputs
+build/
+
+# binaries / logs
+*.class
+*.jar
+*.log
+
+# IDE / local environment
+.idea/
+*.iml
+local.properties
