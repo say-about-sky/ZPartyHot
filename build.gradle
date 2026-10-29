@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.saysky'
+version = '1.0.0'
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}
+
+// ---------------------------------------------------------------------------
+// 路径解析（Gradle 内完成，无外部脚本）
+//   AOH_GAME_ROOT / -PgameRoot   含 game.jar 的游戏根（默认本工程上一级）
+//   -PgameJar=                  直接指定 game.jar
+//   -PhostJar= / 自动发现       HotPluginLoader 宿主 jar
+// ---------------------------------------------------------------------------
+def gameRoot = System.getenv('AOH_GAME_ROOT') ?: findProperty('gameRoot') ?: rootDir.parentFile
+
+def gameJarProp = findProperty('gameJar') as String
+def gameJar = gameJarProp ? file(gameJarProp)
+        : (file("${gameRoot}/game.jar").exists()
+            ? file("${gameRoot}/game.jar")
+            : file("${gameRoot}/MyFirstPlugin/libs/game.jar"))
+
+def hostJarProp = findProperty('hostJar') as String
+def hostJar = hostJarProp ? file(hostJarProp) : (file("${gameRoot}/HotPluginLoader/build/libs")
+        .listFiles()
+        ?.findAll { it.name.startsWith('HotPluginLoader-') && it.name.endsWith('.jar') }
+        ?.sort { a, b -> b.lastModified() <=> a.lastModified() }
+        ?.find { true })
+
+dependencies {
+    compileOnly files(gameJar)
+    if (hostJar != null) {
+        compileOnly files(hostJar)
+    }
+}
+
+tasks.named('compileJava') {
+    doFirst {
+        if (!gameJar.exists()) {
+            throw new GradleException("game.jar not found: ${gameJar}\n" +
+                    "  set AOH_GAME_ROOT / -PgameRoot=<game dir>, or pass -PgameJar=<jar>")
+        }
+        if (hostJar == null || !hostJar.exists()) {
+            throw new GradleException('HotPluginLoader jar not found\n' +
+                    '  build it first (HotPluginLoader\\gradlew.bat shadowJar) or pass -PhostJar=<jar>')
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar { enabled = false }
+shadowJar {
+    archiveFileName = 'ZPartyHot.jar'
+    destinationDirectory = layout.buildDirectory
+    archiveClassifier.set("")
+}

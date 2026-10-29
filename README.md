@@ -199,17 +199,22 @@ hotplugins/resources/ZPartyHot/zparty-ai.json       ← AI 配置（可选；缺
 ## 6. 构建
 
 ```bat
-ZPartyHot\build.ps1     rem 一键：自动定位游戏根/JDK，缺宿主 jar 时先构建 HotPluginLoader
-ZPartyHot\build.bat     rem 依赖已就绪时直接编译
+gradlew.bat shadowJar    rem 纯 Gradle:产物 build\ZPartyHot.jar
+build.bat                rem 同一命令的批处理包装
 ```
 
-参数：`-GameRoot <游戏目录>`、`-HostJar <宿主 jar>`、`-GameJar <game.jar>`（也有对应环境变量 `AOH_GAME_ROOT` / `HOST` / `GAMEJAR`）。
+参数(均可省略):`-PgameRoot=<游戏目录>`、`-PgameJar=<game.jar>`、`-PhostJar=<宿主 jar>`；
+也可用环境变量 `AOH_GAME_ROOT`(游戏根,默认本工程上一级)。
+宿主 jar 默认自动取 `<游戏根>\HotPluginLoader\build\libs\HotPluginLoader-*.jar` 中最新的一份,
+首次构建前先跑一次 `HotPluginLoader\gradlew.bat shadowJar`。
+依赖全部写在 `build.gradle` 里,首次构建自动下载 Gradle 8.2 + shadow 插件(阿里云镜像)。
 
-> **工具链/路径**:游戏根默认取脚本上一级,可用 `AOH_GAME_ROOT` 覆盖;JDK 取 `JAVA_HOME`,
+> **工具链/路径**:游戏根默认取上一级目录,可用 `AOH_GAME_ROOT` 或 `-PgameRoot=` 覆盖;JDK 取 `JAVA_HOME`,
 > 否则自动找 `C:\Program Files\{Microsoft,Java}\jdk-*`。编译依赖
-> `<游戏根>\MyFirstPlugin\libs\game.jar`(或自备 `game.jar`)与 `HotPluginLoader-0.2.0.jar`,均不进版本库。
+> `game.jar`(默认 `<游戏根>\game.jar`,回退 `<游戏根>\MyFirstPlugin\libs\game.jar`,可 `-PgameJar=`)与
+> `HotPluginLoader-*.jar`(默认 `<游戏根>\HotPluginLoader\build\libs` 最新一份,可 `-PhostJar=`),均不进版本库。
 
-- 纯 `javac + jar`，不需要 gradle；`game.jar` 与宿主 jar 仅作编译依赖，**不打包**（否则 `instanceof HotPlugin` 会失败）。
+- 纯 Gradle（`gradlew.bat shadowJar`），无外部脚本；`game.jar` 与宿主 jar 仅作 `compileOnly` 编译依赖，**不打包**（否则 `instanceof HotPlugin` 会失败）。
 - 产物 `ZPartyHot\build\ZPartyHot.jar`（含 `plugin.json`，主类带 `@HotPluginInfo`，宿主两条链路都能识别）。
 
 ## 7. 运行期日志（宿主「开启日志」后可见）

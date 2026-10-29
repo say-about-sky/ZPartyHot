@@ -1,9 +1,11 @@
 # build outputs
 build/
+.gradle/
 
 # binaries / logs
 *.class
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.log
 
 # IDE / local environment
