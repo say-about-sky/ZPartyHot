@@ -199,8 +199,11 @@ hotplugins/resources/ZPartyHot/zparty-ai.json       ← AI 配置（可选；缺
 ## 6. 构建
 
 ```bat
-ZPartyHot\build.bat
+ZPartyHot\build.ps1     rem 一键：自动定位游戏根/JDK，缺宿主 jar 时先构建 HotPluginLoader
+ZPartyHot\build.bat     rem 依赖已就绪时直接编译
 ```
+
+参数：`-GameRoot <游戏目录>`、`-HostJar <宿主 jar>`、`-GameJar <game.jar>`（也有对应环境变量 `AOH_GAME_ROOT` / `HOST` / `GAMEJAR`）。
 
 > **工具链/路径**:游戏根默认取脚本上一级,可用 `AOH_GAME_ROOT` 覆盖;JDK 取 `JAVA_HOME`,
 > 否则自动找 `C:\Program Files\{Microsoft,Java}\jdk-*`。编译依赖

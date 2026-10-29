@@ -14,8 +14,9 @@ if not defined GAME for %%I in ("%~dp0..") do set "GAME=%%~fI"
 if defined JAVA_HOME set "JDK=%JAVA_HOME%\bin"
 if not defined JDK for /d %%D in ("C:\Program Files\Microsoft\jdk-*") do set "JDK=%%D\bin"
 if not defined JDK for /d %%D in ("C:\Program Files\Java\jdk-*") do set "JDK=%%D\bin"
-set "HOST=%GAME%\HotPluginLoader\build\libs\HotPluginLoader-0.2.0.jar"
-set "GAMEJAR=%GAME%\MyFirstPlugin\libs\game.jar"
+if not defined HOST for %%F in ("%GAME%\HotPluginLoader\build\libs\HotPluginLoader-*.jar") do set "HOST=%%~fF"
+if not defined GAMEJAR if exist "%GAME%\game.jar" set "GAMEJAR=%GAME%\game.jar"
+if not defined GAMEJAR set "GAMEJAR=%GAME%\MyFirstPlugin\libs\game.jar"
 
 if not exist "%JDK%\javac.exe" ( echo [ERR] JDK11 not found & exit /b 1 )
 if not exist "%GAMEJAR%" ( echo [ERR] missing game.jar & exit /b 1 )
