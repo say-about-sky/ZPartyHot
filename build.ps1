@@ -83,5 +83,4 @@ $jar = Join-Path $proj "build\ZPartyHot.jar"
 if (-not (Test-Path -LiteralPath $jar)) { Fail "build\ZPartyHot.jar not produced" }
 Write-Host ""
 Write-Host ("[OK] " + $jar + "  (" + (Get-Item -LiteralPath $jar).Length + " bytes)")
-Write-Host "Deploy: copy the jar into <game>\hotplugins\jar\ and put zparty.json into hotplugins\resources\ZPartyHot\"
 exit 0
