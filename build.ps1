@@ -30,9 +30,9 @@ if ([string]::IsNullOrEmpty($GameRoot)) {
 }
 Write-Host "=== game root: $GameRoot"
 if ([string]::IsNullOrEmpty($GameJar)) {
-    $cand = @((Join-Path $GameRoot "game.jar"), (Join-Path $GameRoot "MyFirstPlugin\libs\game.jar")) |
-            Where-Object { Test-Path -LiteralPath $_ }
-    if ($cand.Count -gt 0) { $GameJar = $cand[0] }
+    foreach ($p in @((Join-Path $GameRoot "game.jar"), (Join-Path $GameRoot "MyFirstPlugin\libs\game.jar"))) {
+        if (Test-Path -LiteralPath $p) { $GameJar = $p; break }
+    }
 }
 if ([string]::IsNullOrEmpty($GameJar) -or -not (Test-Path -LiteralPath $GameJar)) {
     Fail "game.jar not found (pass -GameJar <path> or set AOH_GAME_ROOT)"
