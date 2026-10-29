@@ -209,6 +209,22 @@ build.bat                rem 同一命令的批处理包装
 首次构建前先跑一次 `HotPluginLoader\gradlew.bat shadowJar`。
 依赖全部写在 `build.gradle` 里,首次构建自动下载 Gradle 8.2 + shadow 插件(阿里云镜像)。
 
+### 构建加速（国内网络）
+
+- 镜像顺序：阿里云 `gradle-plugin` → 阿里云 `public` → 华为云 → `mavenCentral()`（兜底）；
+  `settings.gradle` 的 `pluginManagement` 专门给 shadow 插件配了镜像（Plugin Portal 国内很慢）。
+- `gradle.properties` 已开 `daemon / parallel / caching / vfs.watch` + 2 GB 堆，增量构建 ≈1 s。
+- Gradle 发行包走腾讯云镜像（3.7 MB/s）。
+
+### IntelliJ IDEA 运行/调试配置
+
+`.run\` 内的配置打开工程即生效：
+
+| 配置 | 类型 | 作用 |
+|---|---|---|
+| 构建 jar（gradle shadowJar） | Gradle | 出 `build\ZPartyHot.jar` |
+| 调试游戏（桌面 JDWP 5005） | Remote JVM Debug | 先 `StartFinality-jdwp.bat` 启动游戏再 Debug |
+
 > **工具链/路径**:游戏根默认取上一级目录,可用 `AOH_GAME_ROOT` 或 `-PgameRoot=` 覆盖;JDK 取 `JAVA_HOME`,
 > 否则自动找 `C:\Program Files\{Microsoft,Java}\jdk-*`。编译依赖
 > `game.jar`(默认 `<游戏根>\game.jar`,回退 `<游戏根>\MyFirstPlugin\libs\game.jar`,可 `-PgameJar=`)与

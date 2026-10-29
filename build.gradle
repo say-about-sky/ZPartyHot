@@ -67,3 +67,7 @@ shadowJar {
     destinationDirectory = layout.buildDirectory
     archiveClassifier.set("")
 }
+
+// jar 被关掉后 build 不会自动带上 shadowJar，这里补上
+// 用法：gradlew.bat build == gradlew.bat shadowJar
+tasks.named('build') { dependsOn tasks.named('shadowJar') }

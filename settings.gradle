@@ -1,1 +1,10 @@
+pluginManagement {
+    repositories {
+        // 国内镜像优先:shadow 等插件的 marker / 依赖先从阿里云取(Gradle Plugin Portal 在国内很慢)
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'ZPartyHot'
